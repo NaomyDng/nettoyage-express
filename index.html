@@ -236,27 +236,32 @@
     e.preventDefault();
     const data = Object.fromEntries(new FormData(form).entries());
 
-    if (!data.name || !data.contact) {
-      koMsg.textContent = '❌ Nom et contact sont requis.';
-      okMsg.hidden = true; koMsg.hidden = false;
+    // Validation minimale : nom + (email ou téléphone)
+    if (!data.name || (!data.email && !data.phone)) {
+      koMsg.textContent = '❌ Merci d’indiquer votre nom et au moins un moyen de contact (email ou téléphone).';
+      okMsg.hidden = true; 
+      koMsg.hidden = false;
       return;
     }
 
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
-        headers: {'Content-Type':'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       });
 
       if (res.ok) {
         form.reset();
-        okMsg.hidden = false; koMsg.hidden = true;
+        okMsg.hidden = false; 
+        koMsg.hidden = true;
       } else {
-        okMsg.hidden = true; koMsg.hidden = false;
+        okMsg.hidden = true; 
+        koMsg.hidden = false;
       }
-    } catch {
-      okMsg.hidden = true; koMsg.hidden = false;
+    } catch (err) {
+      okMsg.hidden = true; 
+      koMsg.hidden = false;
     }
   });
 </script>
