@@ -264,6 +264,16 @@
         form.reset();
         okMsg.hidden = false; 
         koMsg.hidden = true;
+
+        // ✅ Conversion Google Ads UNIQUEMENT après succès
+        if (typeof gtag === 'function') {
+          gtag('event', 'conversion', {
+            'send_to': 'AW-17635350087/yFUICLCewakbEMesmNlB',
+            'value': 1.0,
+            'currency': 'EUR'
+          });
+          // console.log('✅ Conversion Google Ads envoyée');
+        }
       } else {
         okMsg.hidden = true; 
         koMsg.hidden = false;
@@ -274,7 +284,7 @@
     }
   });
 </script>
-
+        
       </div>
     </section>
   </main>
