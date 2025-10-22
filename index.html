@@ -32,6 +32,15 @@
     "areaServed":["Bruxelles","Brabant Wallon","Brabant Flamand","Namur","Liège","Charleroi","Mons"]
   }
   </script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17635350087"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-17635350087');
+</script>
 </head>
 <body>
   <a class="skip-link" href="#contenu">Aller au contenu</a>
@@ -255,6 +264,16 @@
         form.reset();
         okMsg.hidden = false; 
         koMsg.hidden = true;
+
+        // ✅ Conversion Google Ads UNIQUEMENT après succès
+        if (typeof gtag === 'function') {
+          gtag('event', 'conversion', {
+            'send_to': 'AW-17635350087/yFUICLCewakbEMesmNlB',
+            'value': 1.0,
+            'currency': 'EUR'
+          });
+          // console.log('✅ Conversion Google Ads envoyée');
+        }
       } else {
         okMsg.hidden = true; 
         koMsg.hidden = false;
@@ -265,7 +284,7 @@
     }
   });
 </script>
-
+        
       </div>
     </section>
   </main>
